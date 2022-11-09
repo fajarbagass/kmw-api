@@ -57,7 +57,7 @@ module.exports = {
         message: "client deleted successfully",
       });
     } catch (error) {
-      if (error.name === "clienttNotFound") {
+      if (error.name === "clientNotFound") {
         res.status(404).json({
           name: error.name,
           message: error.message,
