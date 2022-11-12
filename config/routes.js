@@ -2,12 +2,18 @@ const express = require("express");
 const controllers = require("../app/controllers");
 const checkValidate = require("../app/middlewares/checkValidate");
 const middlewares = require("../app/middlewares/authorization");
-const { userValidation, faultValidation } = require("../app/validations");
+const {
+  userValidation,
+  faultValidation,
+  indicationValidation,
+} = require("../app/validations");
 
 const apiRouter = express.Router();
 const adminControllers = controllers.api.v1.adminController;
 const clientControllers = controllers.api.v1.clientController;
 const faultControllers = controllers.api.v1.faultController;
+const indicationControllers = controllers.api.v1.indicationController;
+
 /**
  * TODO: Implement your own API
  *       implementationsz
@@ -65,6 +71,28 @@ apiRouter.delete(
 );
 apiRouter.get("/api/v1/fault", faultControllers.getAll);
 apiRouter.get("/api/v1/fault/:id", faultControllers.find);
+
+// indication
+apiRouter.post(
+  "/api/v1/indication/create",
+  middlewares.authorize,
+  indicationValidation.createIndicationDataValidator,
+  checkValidate,
+  indicationControllers.create
+);
+apiRouter.put(
+  "/api/v1/indication/:id",
+  middlewares.authorize,
+  indicationControllers.update
+);
+apiRouter.delete(
+  "/api/v1/indication/:id",
+  middlewares.authorize,
+  indicationControllers.delete
+);
+apiRouter.get("/api/v1/indication", indicationControllers.getAll);
+apiRouter.get("/api/v1/indication/:id", indicationControllers.find);
+
 /**
  * TODO: Delete this, this is just a demonstration of
  *       error handler
