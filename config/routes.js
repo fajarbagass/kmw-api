@@ -6,6 +6,7 @@ const {
   userValidation,
   faultValidation,
   indicationValidation,
+  kbValidation,
 } = require("../app/validations");
 
 const apiRouter = express.Router();
@@ -13,6 +14,7 @@ const adminControllers = controllers.api.v1.adminController;
 const clientControllers = controllers.api.v1.clientController;
 const faultControllers = controllers.api.v1.faultController;
 const indicationControllers = controllers.api.v1.indicationController;
+const kbControllers = controllers.api.v1.kbController;
 
 /**
  * TODO: Implement your own API
@@ -92,6 +94,27 @@ apiRouter.delete(
 );
 apiRouter.get("/api/v1/indication", indicationControllers.getAll);
 apiRouter.get("/api/v1/indication/:id", indicationControllers.find);
+
+// Knowlegde Base
+apiRouter.post(
+  "/api/v1/knowledge-base/create",
+  middlewares.authorize,
+  // kbValidation.kbDataValidate,
+  // checkValidate,
+  kbControllers.create
+);
+apiRouter.put(
+  "/api/v1/knowledge-base/:id",
+  middlewares.authorize,
+  kbControllers.update
+);
+apiRouter.delete(
+  "/api/v1/knowledge-base/:id",
+  middlewares.authorize,
+  kbControllers.delete
+);
+apiRouter.get("/api/v1/knowledge-base", kbControllers.getAll);
+apiRouter.get("/api/v1/knowledge-base/:id", kbControllers.find);
 
 /**
  * TODO: Delete this, this is just a demonstration of

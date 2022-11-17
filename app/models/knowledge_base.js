@@ -23,10 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: {
           notEmpty: {
-            msg: "indication is required",
-          },
-          isNumeric: {
-            msg: "indication is not valid",
+            msg: "Indication is required",
           },
         },
       },
@@ -34,10 +31,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: {
           notEmpty: {
-            msg: "fault is required",
+            msg: "Fault is required",
           },
           isNumeric: {
-            msg: "fault is not valid",
+            msg: "Fault is not valid",
           },
         },
       },
