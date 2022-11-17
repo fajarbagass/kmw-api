@@ -9,9 +9,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Indication.hasMany(models.Consultation, {
-        foreignKey: "id_indication",
-      });
       Indication.hasMany(models.Knowledge_Base, {
         foreignKey: "id_indication",
       });
@@ -19,6 +16,14 @@ module.exports = (sequelize, DataTypes) => {
   }
   Indication.init(
     {
+      code: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            msg: "Code is required",
+          },
+        },
+      },
       name: {
         type: DataTypes.STRING,
         validate: {
@@ -31,10 +36,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.FLOAT,
         validate: {
           notEmpty: {
-            msg: "mb is required",
+            msg: "MB is required",
           },
           isFloat: {
-            msg: "mb is not valid",
+            msg: "MB is not valid",
           },
         },
       },

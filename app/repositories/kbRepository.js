@@ -32,11 +32,11 @@ module.exports = {
       include: [
         {
           model: Indication,
-          attributes: ["id", "name"],
+          attributes: ["id", "code", "name", "mb"],
         },
         {
           model: Fault,
-          attributes: ["id", "name", "solution"],
+          attributes: ["id", "code", "name", "md", "solution"],
         },
       ],
       attributes: ["id"],
@@ -47,17 +47,45 @@ module.exports = {
       include: [
         {
           model: Indication,
-          attributes: ["id", "name"],
+          attributes: ["id", "code", "name", "mb"],
         },
         {
           model: Fault,
-          attributes: ["id", "name", "solution"],
+          attributes: ["id", "code", "name", "md", "solution"],
         },
       ],
       where: {
         id,
       },
       attributes: ["id"],
+    });
+  },
+  findFault(fault) {
+    return Knowledge_Base.findOne({
+      include: [
+        {
+          model: Fault,
+          attributes: ["id", "code", "name", "md", "solution"],
+        },
+      ],
+      where: {
+        id_fault: fault,
+      },
+      attributes: [],
+    });
+  },
+  findIndication(fault) {
+    return Knowledge_Base.findAll({
+      include: [
+        {
+          model: Indication,
+          attributes: ["id", "code", "name", "mb"],
+        },
+      ],
+      where: {
+        id_fault: fault,
+      },
+      attributes: [],
     });
   },
 };

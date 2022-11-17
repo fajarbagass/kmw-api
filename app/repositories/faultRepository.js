@@ -4,6 +4,7 @@ module.exports = {
   //    create fault data
   create(data) {
     return Fault.create({
+      code: data.code,
       name: data.name,
       solution: data.solution,
       md: data.md,
@@ -21,6 +22,7 @@ module.exports = {
   update(id, data) {
     return Fault.update(
       {
+        code: data.code,
         name: data.name,
         solution: data.solution,
         md: data.md,

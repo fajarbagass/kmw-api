@@ -59,4 +59,18 @@ module.exports = {
       throw error;
     }
   },
+  async getByFault(fault) {
+    try {
+      return await indicationRepository.findByFault(fault.id);
+    } catch (error) {
+      throw error;
+    }
+  },
+  async getFaultId(fault) {
+    try {
+      return await indicationRepository.findFaultId(fault.id);
+    } catch (error) {
+      throw error;
+    }
+  },
 };

@@ -115,4 +115,28 @@ module.exports = {
       }
     }
   },
+  async findKnowledgeBase(req, res) {
+    try {
+      const id = req.params;
+      const indication = await kbServices.findByIndication(id);
+      const fault = await kbServices.findByFault(id);
+      res.status(200).json({
+        status: "success",
+        fault,
+        indication,
+      });
+    } catch (error) {
+      if (error.name === "kbNotFound") {
+        res.status(404).json({
+          name: error.name,
+          message: error.message,
+        });
+      } else {
+        res.status(500).json({
+          name: error.name,
+          message: error.message,
+        });
+      }
+    }
+  },
 };

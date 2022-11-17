@@ -99,8 +99,8 @@ apiRouter.get("/api/v1/indication/:id", indicationControllers.find);
 apiRouter.post(
   "/api/v1/knowledge-base/create",
   middlewares.authorize,
-  // kbValidation.kbDataValidate,
-  // checkValidate,
+  kbValidation.kbDataValidate,
+  checkValidate,
   kbControllers.create
 );
 apiRouter.put(
@@ -115,6 +115,10 @@ apiRouter.delete(
 );
 apiRouter.get("/api/v1/knowledge-base", kbControllers.getAll);
 apiRouter.get("/api/v1/knowledge-base/:id", kbControllers.find);
+apiRouter.get(
+  "/api/v1/knowledge-base/fault/:id",
+  kbControllers.findKnowledgeBase
+);
 
 /**
  * TODO: Delete this, this is just a demonstration of

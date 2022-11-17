@@ -60,4 +60,18 @@ module.exports = {
       throw error;
     }
   },
+  async findByFault(fault) {
+    try {
+      return await kbRepository.findFault(fault.id);
+    } catch (error) {
+      throw error;
+    }
+  },
+  async findByIndication(fault) {
+    try {
+      return await kbRepository.findIndication(fault.id);
+    } catch (error) {
+      throw error;
+    }
+  },
 };

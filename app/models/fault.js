@@ -16,6 +16,14 @@ module.exports = (sequelize, DataTypes) => {
   }
   Fault.init(
     {
+      code: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            msg: "Code is required",
+          },
+        },
+      },
       name: {
         type: DataTypes.STRING,
         validate: {
