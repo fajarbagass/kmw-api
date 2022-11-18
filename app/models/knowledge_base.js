@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: {
             msg: "Indication is required",
           },
+          isNumeric: {
+            msg: "Indication is not valid",
+          },
         },
       },
       id_fault: {

@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: {
             msg: "Fault is required",
           },
+          isNumeric: {
+            msg: "Fault is not valid",
+          },
         },
       },
       id_consultation: {
@@ -32,6 +35,9 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: {
             msg: "Consultation is required",
+          },
+          isNumeric: {
+            msg: "Consultation is not valid",
           },
         },
       },

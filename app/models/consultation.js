@@ -28,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: {
             msg: "Client is required",
           },
+          isNumeric: {
+            msg: "Client is not valid",
+          },
         },
       },
       id_indication: {
@@ -35,6 +38,9 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: {
             msg: "Indication is required",
+          },
+          isNumeric: {
+            msg: "Indication is not valid",
           },
         },
       },
