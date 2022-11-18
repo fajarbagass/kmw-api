@@ -8,6 +8,7 @@ const {
   indicationValidation,
   kbValidation,
   consultationValidation,
+  resultValidation,
 } = require("../app/validations");
 
 const apiRouter = express.Router();
@@ -17,6 +18,7 @@ const faultControllers = controllers.api.v1.faultController;
 const indicationControllers = controllers.api.v1.indicationController;
 const kbControllers = controllers.api.v1.kbController;
 const consultationControllers = controllers.api.v1.consultationController;
+const resultControllers = controllers.api.v1.resultController;
 
 /**
  * TODO: Implement your own API
@@ -146,6 +148,28 @@ apiRouter.get(
   "/api/v1/consultation/user/:id",
   consultationControllers.findConsultation
 );
+
+// result
+apiRouter.post(
+  "/api/v1/result/create",
+  middlewares.authorize,
+  resultValidation.resultDataValidate,
+  checkValidate,
+  resultControllers.create
+);
+apiRouter.put(
+  "/api/v1/result/:id",
+  middlewares.authorize,
+  resultControllers.update
+);
+apiRouter.delete(
+  "/api/v1/result/:id",
+  middlewares.authorize,
+  resultControllers.delete
+);
+apiRouter.get("/api/v1/result/:id", resultControllers.find);
+apiRouter.get("/api/v1/result", resultControllers.getAll);
+apiRouter.get("/api/v1/result/user/:id", resultControllers.findResult);
 
 /**
  * TODO: Delete this, this is just a demonstration of

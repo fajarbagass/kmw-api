@@ -1,7 +1,7 @@
 "use strict";
-const { Model, IndexHints } = require("sequelize");
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Consultation extends Model {
+  class Result extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,40 +9,37 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Consultation.belongsTo(models.Client, {
-        foreignKey: "id_client",
+      Result.belongsTo(models.Fault, {
+        foreignKey: "id_fault",
       });
-      Consultation.belongsTo(models.Indication, {
-        foreignKey: "id_indication",
-      });
-      Consultation.hasMany(models.Result, {
+      Result.belongsTo(models.Consultation, {
         foreignKey: "id_consultation",
       });
     }
   }
-  Consultation.init(
+  Result.init(
     {
-      id_client: {
+      id_fault: {
         type: DataTypes.INTEGER,
         validate: {
           notEmpty: {
-            msg: "Client is required",
+            msg: "Fault is required",
           },
         },
       },
-      id_indication: {
+      id_consultation: {
         type: DataTypes.INTEGER,
         validate: {
           notEmpty: {
-            msg: "Indication is required",
+            msg: "Consultation is required",
           },
         },
       },
     },
     {
       sequelize,
-      modelName: "Consultation",
+      modelName: "Result",
     }
   );
-  return Consultation;
+  return Result;
 };

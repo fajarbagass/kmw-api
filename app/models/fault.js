@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       Fault.hasMany(models.Knowledge_Base, {
         foreignKey: "id_fault",
       });
+      Fault.hasMany(models.Result, {
+        foreignKey: "id_fault",
+      });
     }
   }
   Fault.init(

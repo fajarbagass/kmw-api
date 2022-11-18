@@ -4,6 +4,8 @@ const faultController = require("./faultController");
 const indicationController = require("./indicationController");
 const kbController = require("./kbController");
 const consultationController = require("./consultationController");
+const resultController = require("./resultController");
+
 module.exports = {
   adminController,
   clientController,
@@ -11,4 +13,5 @@ module.exports = {
   indicationController,
   kbController,
   consultationController,
+  resultController,
 };
