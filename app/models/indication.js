@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       Indication.hasMany(models.Knowledge_Base, {
         foreignKey: "id_indication",
       });
+      Indication.hasMany(models.Consultation, {
+        foreignKey: "id_indication",
+      });
     }
   }
   Indication.init(

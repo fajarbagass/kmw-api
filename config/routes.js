@@ -7,6 +7,7 @@ const {
   faultValidation,
   indicationValidation,
   kbValidation,
+  consultationValidation,
 } = require("../app/validations");
 
 const apiRouter = express.Router();
@@ -15,6 +16,7 @@ const clientControllers = controllers.api.v1.clientController;
 const faultControllers = controllers.api.v1.faultController;
 const indicationControllers = controllers.api.v1.indicationController;
 const kbControllers = controllers.api.v1.kbController;
+const consultationControllers = controllers.api.v1.consultationController;
 
 /**
  * TODO: Implement your own API
@@ -118,6 +120,31 @@ apiRouter.get("/api/v1/knowledge-base/:id", kbControllers.find);
 apiRouter.get(
   "/api/v1/knowledge-base/fault/:id",
   kbControllers.findKnowledgeBase
+);
+
+// consultation
+apiRouter.post(
+  "/api/v1/consultation/create",
+  middlewares.authorize,
+  consultationValidation.consultationDataValidate,
+  checkValidate,
+  consultationControllers.create
+);
+apiRouter.put(
+  "/api/v1/consultation/:id",
+  middlewares.authorize,
+  consultationControllers.update
+);
+apiRouter.delete(
+  "/api/v1/consultation/:id",
+  middlewares.authorize,
+  consultationControllers.delete
+);
+apiRouter.get("/api/v1/consultation/:id", consultationControllers.find);
+apiRouter.get("/api/v1/consultation", consultationControllers.getAll);
+apiRouter.get(
+  "/api/v1/consultation/user/:id",
+  consultationControllers.findConsultation
 );
 
 /**
