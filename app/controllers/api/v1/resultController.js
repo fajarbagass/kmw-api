@@ -33,7 +33,7 @@ module.exports = {
       await resultServices.update(id, data);
       res.status(200).json({
         status: "success",
-        message: "Knowledge Base updated sucessfully",
+        message: "Result updated sucessfully",
       });
     } catch (error) {
       if (error.name === "resultNotFound") {

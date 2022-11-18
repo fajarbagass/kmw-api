@@ -69,7 +69,7 @@ module.exports = {
       await indicationServices.update(id, data);
       res.status(200).json({
         status: "success",
-        message: "indication updated successfully",
+        message: "Indication updated successfully",
       });
     } catch (error) {
       if (error.name === "indicationNotFound") {
@@ -99,7 +99,7 @@ module.exports = {
       await indicationServices.delete(id);
       res.status(200).json({
         status: "success",
-        message: "indication deleted successfully",
+        message: "Indication deleted successfully",
       });
     } catch (error) {
       if (error.name === "indicationNotFound") {

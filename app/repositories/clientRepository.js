@@ -1,7 +1,6 @@
 const { Client } = require("../models");
 
 module.exports = {
-  // create client data
   create(data) {
     return Client.create({
       name: data.name,
@@ -11,9 +10,11 @@ module.exports = {
       number_plat: data.number_plat,
     });
   },
-  // get client by ID
   find(id) {
     return Client.findByPk(id);
+  },
+  getAll() {
+    return Client.findAll();
   },
   delete(id) {
     return Client.destroy({

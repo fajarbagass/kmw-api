@@ -61,21 +61,42 @@ module.exports = {
   },
   async findUser(user) {
     try {
-      return await resultRepository.findUser(user.id);
+      const result = await resultRepository.findUser(user.id);
+      if (!result) {
+        throw {
+          name: "resultNotFound",
+          message: "Result is not found",
+        };
+      }
+      return result;
     } catch (error) {
       throw error;
     }
   },
   async findFault(user) {
     try {
-      return await resultRepository.findFault(user.id);
+      const result = await resultRepository.findFault(user.id);
+      if (!result) {
+        throw {
+          name: "resultNotFound",
+          message: "Result is not found",
+        };
+      }
+      return result;
     } catch (error) {
       throw error;
     }
   },
   async findIndication(user) {
     try {
-      return await resultRepository.findIndication(user.id);
+      const result = await resultRepository.findIndication(user.id);
+      if (!result) {
+        throw {
+          name: "resultNotFound",
+          message: "Result is not found",
+        };
+      }
+      return result;
     } catch (error) {
       throw error;
     }

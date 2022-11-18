@@ -32,7 +32,14 @@ module.exports = {
       include: [
         {
           model: Client,
-          attributes: ["id", "name"],
+          attributes: [
+            "id",
+            "name",
+            "category",
+            "car",
+            "car_year",
+            "number_plat",
+          ],
         },
         {
           model: Indication,
@@ -47,7 +54,14 @@ module.exports = {
       include: [
         {
           model: Client,
-          attributes: ["id", "name"],
+          attributes: [
+            "id",
+            "name",
+            "category",
+            "car",
+            "car_year",
+            "number_plat",
+          ],
         },
         {
           model: Indication,
@@ -65,7 +79,14 @@ module.exports = {
       include: [
         {
           model: Client,
-          attributes: ["id", "name"],
+          attributes: [
+            "id",
+            "name",
+            "category",
+            "car",
+            "car_year",
+            "number_plat",
+          ],
         },
       ],
       where: {

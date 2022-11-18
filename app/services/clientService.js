@@ -22,6 +22,13 @@ module.exports = {
       throw error;
     }
   },
+  async findAll() {
+    try {
+      return await clientRepository.getAll();
+    } catch (error) {
+      throw error;
+    }
+  },
   async delete(id) {
     try {
       const client = await clientRepository.find(id);

@@ -118,8 +118,8 @@ module.exports = {
   async findKnowledgeBase(req, res) {
     try {
       const id = req.params;
-      const indication = await kbServices.findByIndication(id);
-      const fault = await kbServices.findByFault(id);
+      const fault = await kbServices.findFault(id);
+      const indication = await kbServices.findIndication(id);
       res.status(200).json({
         status: "success",
         fault,

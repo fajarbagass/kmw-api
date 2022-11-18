@@ -55,7 +55,8 @@ apiRouter.post(
   clientControllers.create
 );
 apiRouter.get("/api/v1/client/:id", clientControllers.find);
-// apiRouter.delete("/api/v1/client/:id", clientControllers.delete);
+apiRouter.get("/api/v1/client", clientControllers.getAll);
+apiRouter.delete("/api/v1/client/:id", clientControllers.delete);
 
 // fault
 apiRouter.post(
@@ -82,7 +83,7 @@ apiRouter.get("/api/v1/fault/:id", faultControllers.find);
 apiRouter.post(
   "/api/v1/indication/create",
   middlewares.authorize,
-  indicationValidation.createIndicationDataValidator,
+  indicationValidation.indicationDataValidator,
   checkValidate,
   indicationControllers.create
 );
@@ -132,17 +133,17 @@ apiRouter.post(
   checkValidate,
   consultationControllers.create
 );
-apiRouter.put(
-  "/api/v1/consultation/:id",
-  middlewares.authorize,
-  consultationControllers.update
-);
+// apiRouter.put(
+//   "/api/v1/consultation/:id",
+//   middlewares.authorize,
+//   consultationControllers.update
+// );
 apiRouter.delete(
   "/api/v1/consultation/:id",
   middlewares.authorize,
   consultationControllers.delete
 );
-apiRouter.get("/api/v1/consultation/:id", consultationControllers.find);
+// apiRouter.get("/api/v1/consultation/:id", consultationControllers.find);
 apiRouter.get("/api/v1/consultation", consultationControllers.getAll);
 apiRouter.get(
   "/api/v1/consultation/user/:id",
@@ -157,17 +158,17 @@ apiRouter.post(
   checkValidate,
   resultControllers.create
 );
-apiRouter.put(
-  "/api/v1/result/:id",
-  middlewares.authorize,
-  resultControllers.update
-);
+// apiRouter.put(
+//   "/api/v1/result/:id",
+//   middlewares.authorize,
+//   resultControllers.update
+// );
 apiRouter.delete(
   "/api/v1/result/:id",
   middlewares.authorize,
   resultControllers.delete
 );
-apiRouter.get("/api/v1/result/:id", resultControllers.find);
+// apiRouter.get("/api/v1/result/:id", resultControllers.find);
 apiRouter.get("/api/v1/result", resultControllers.getAll);
 apiRouter.get("/api/v1/result/user/:id", resultControllers.findResult);
 

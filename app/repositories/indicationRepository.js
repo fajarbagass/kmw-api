@@ -1,4 +1,4 @@
-const { Indication, Fault } = require("../models");
+const { Indication } = require("../models");
 
 module.exports = {
   create(data) {

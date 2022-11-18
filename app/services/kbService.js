@@ -1,4 +1,3 @@
-const { check } = require("express-validator");
 const kbRepository = require("../repositories/kbRepository");
 
 module.exports = {
@@ -60,16 +59,30 @@ module.exports = {
       throw error;
     }
   },
-  async findByFault(fault) {
+  async findFault(fault) {
     try {
-      return await kbRepository.findFault(fault.id);
+      const kb = await kbRepository.findFault(fault.id);
+      if (!kb) {
+        throw {
+          name: "kbNotFound",
+          message: "Knowledge Base is not found",
+        };
+      }
+      return kb;
     } catch (error) {
       throw error;
     }
   },
-  async findByIndication(fault) {
+  async findIndication(fault) {
     try {
-      return await kbRepository.findIndication(fault.id);
+      const kb = await kbRepository.findIndication(fault.id);
+      if (!kb) {
+        throw {
+          name: "kbNotFound",
+          message: "Knowledge Base is not found",
+        };
+      }
+      return kb;
     } catch (error) {
       throw error;
     }

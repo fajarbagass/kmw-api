@@ -85,7 +85,7 @@ module.exports = {
       where: {
         id_fault: fault,
       },
-      attributes: [],
+      attributes: ["id"],
     });
   },
 };

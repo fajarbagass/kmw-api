@@ -69,7 +69,7 @@ module.exports = {
       await faultServices.update(id, data);
       res.status(200).json({
         status: "success",
-        message: "fault updated successfully",
+        message: "Fault updated successfully",
       });
     } catch (error) {
       if (error.name === "faultNotFound") {
@@ -99,7 +99,7 @@ module.exports = {
       await faultServices.delete(id);
       res.status(200).json({
         status: "success",
-        message: "fault deleted successfully",
+        message: "Fault deleted successfully",
       });
     } catch (error) {
       if (error.name === "faultNotFound") {

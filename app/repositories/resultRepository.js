@@ -46,11 +46,18 @@ module.exports = {
           include: [
             {
               model: Client,
-              attributes: ["id", "name"],
+              attributes: [
+                "id",
+                "name",
+                "category",
+                "car",
+                "car_year",
+                "number_plat",
+              ],
             },
             {
               model: Indication,
-              attributes: ["id", "code", "name"],
+              attributes: ["id", "code", "name", "mb"],
             },
           ],
         },
@@ -82,7 +89,7 @@ module.exports = {
             },
             {
               model: Indication,
-              attributes: ["id", "name", "mb"],
+              attributes: ["id", "code", "name", "mb"],
             },
           ],
         },
@@ -146,7 +153,7 @@ module.exports = {
           include: [
             {
               model: Indication,
-              attributes: ["id", "code", "name"],
+              attributes: ["id", "code", "name", "mb"],
             },
           ],
           attributes: ["id"],
