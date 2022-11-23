@@ -5,7 +5,7 @@ module.exports = {
     try {
       const data = req.body;
       const fault = await faultServices.create(data);
-      res.status(200).json({
+      res.status(201).json({
         status: "success",
         data: fault,
       });

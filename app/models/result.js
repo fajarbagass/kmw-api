@@ -10,16 +10,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Result.belongsTo(models.Fault, {
-        foreignKey: "id_fault",
+        foreignKey: "fault_id",
       });
       Result.belongsTo(models.Consultation, {
-        foreignKey: "id_consultation",
+        foreignKey: "consultation_id",
       });
     }
   }
   Result.init(
     {
-      id_fault: {
+      fault_id: {
         type: DataTypes.INTEGER,
         validate: {
           notEmpty: {
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      id_consultation: {
+      consultation_id: {
         type: DataTypes.INTEGER,
         validate: {
           notEmpty: {

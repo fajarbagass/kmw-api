@@ -9,15 +9,15 @@ const {
 module.exports = {
   create(data) {
     return Result.create({
-      id_fault: data.id_fault,
-      id_consultation: data.id_consultation,
+      fault_id: data.fault_id,
+      consultation_id: data.consultation_id,
     });
   },
   update(id, data) {
     return Result.update(
       {
-        id_fault: data.id_fault,
-        id_consultation: data.id_consultation,
+        fault_id: data.fault_id,
+        consultation_id: data.consultation_id,
       },
       {
         where: {
@@ -111,7 +111,7 @@ module.exports = {
           model: Consultation,
           attributes: [],
           where: {
-            id_client: user,
+            client_id: user,
           },
         },
       ],
@@ -138,7 +138,7 @@ module.exports = {
           ],
           attributes: ["id"],
           where: {
-            id_client: user,
+            client_id: user,
           },
         },
       ],
@@ -158,7 +158,7 @@ module.exports = {
           ],
           attributes: ["id"],
           where: {
-            id_client: user,
+            client_id: user,
           },
         },
       ],

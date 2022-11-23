@@ -2,9 +2,9 @@ const { body } = require("express-validator");
 
 module.exports = {
   consultationDataValidate: [
-    body("id_client", "Client is required").exists(),
-    body("id_client", "Client is not valid").isNumeric(),
-    body("id_indication", "Indication is required").exists(),
-    body("id_indication", "Indication is not valid").isNumeric(),
+    body("client_id", "Client is required").exists(),
+    body("client_id", "Client is not valid").isNumeric(),
+    body("indication_id", "Indication is required").exists(),
+    body("indication_id", "Indication is not valid").isNumeric(),
   ],
 };

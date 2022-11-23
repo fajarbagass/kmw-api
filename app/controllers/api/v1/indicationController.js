@@ -5,7 +5,7 @@ module.exports = {
     try {
       const data = req.body;
       const indication = await indicationServices.create(data);
-      res.status(200).json({
+      res.status(201).json({
         status: "success",
         data: indication,
       });

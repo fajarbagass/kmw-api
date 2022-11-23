@@ -9,10 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      id_indication: {
+      indication_id: {
         type: Sequelize.INTEGER,
       },
-      id_fault: {
+      fault_id: {
         type: Sequelize.INTEGER,
       },
       createdAt: {

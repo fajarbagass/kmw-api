@@ -2,9 +2,9 @@ const { body } = require("express-validator");
 
 module.exports = {
   kbDataValidate: [
-    body("id_indication", "Indication is required").exists(),
-    body("id_indication", "Indication is not valid").isNumeric(),
-    body("id_fault", "Fault is required").exists(),
-    body("id_fault", "Fault is not valid").isNumeric(),
+    body("indication_id", "Indication is required").exists(),
+    body("indication_id", "Indication is not valid").isNumeric(),
+    body("fault_id", "Fault is required").exists(),
+    body("fault_id", "Fault is not valid").isNumeric(),
   ],
 };

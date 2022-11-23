@@ -10,16 +10,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Knowledge_Base.belongsTo(models.Indication, {
-        foreignKey: "id_indication",
+        foreignKey: "indication_id",
       });
       Knowledge_Base.belongsTo(models.Fault, {
-        foreignKey: "id_fault",
+        foreignKey: "fault_id",
       });
     }
   }
   Knowledge_Base.init(
     {
-      id_indication: {
+      indication_id: {
         type: DataTypes.INTEGER,
         validate: {
           notEmpty: {
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      id_fault: {
+      fault_id: {
         type: DataTypes.INTEGER,
         validate: {
           notEmpty: {

@@ -3,15 +3,15 @@ const { Consultation, Client, Indication } = require("../models");
 module.exports = {
   create(data) {
     return Consultation.create({
-      id_client: data.id_client,
-      id_indication: data.id_indication,
+      client_id: data.client_id,
+      indication_id: data.indication_id,
     });
   },
   update(id, data) {
     return Consultation.update(
       {
-        id_client: data.id_client,
-        id_indication: data.id_indication,
+        client_id: data.client_id,
+        indication_id: data.indication_id,
       },
       {
         where: {
@@ -90,7 +90,7 @@ module.exports = {
         },
       ],
       where: {
-        id_client: user,
+        client_id: user,
       },
       attributes: [],
     });
@@ -104,7 +104,7 @@ module.exports = {
         },
       ],
       where: {
-        id_client: user,
+        client_id: user,
       },
       attributes: [],
     });

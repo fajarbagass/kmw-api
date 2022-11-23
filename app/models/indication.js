@@ -10,10 +10,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Indication.hasMany(models.Knowledge_Base, {
-        foreignKey: "id_indication",
+        foreignKey: "indication_id",
       });
       Indication.hasMany(models.Consultation, {
-        foreignKey: "id_indication",
+        foreignKey: "indication_id",
       });
     }
   }

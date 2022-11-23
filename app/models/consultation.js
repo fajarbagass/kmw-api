@@ -10,19 +10,19 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Consultation.belongsTo(models.Client, {
-        foreignKey: "id_client",
+        foreignKey: "client_id",
       });
       Consultation.belongsTo(models.Indication, {
-        foreignKey: "id_indication",
+        foreignKey: "indication_id",
       });
       Consultation.hasMany(models.Result, {
-        foreignKey: "id_consultation",
+        foreignKey: "consultation_id",
       });
     }
   }
   Consultation.init(
     {
-      id_client: {
+      client_id: {
         type: DataTypes.INTEGER,
         validate: {
           notEmpty: {
@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      id_indication: {
+      indication_id: {
         type: DataTypes.INTEGER,
         validate: {
           notEmpty: {

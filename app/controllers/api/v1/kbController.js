@@ -5,7 +5,7 @@ module.exports = {
     try {
       const data = req.body;
       const kb = await kbServices.create(data);
-      res.status(200).json({
+      res.status(201).json({
         status: "success",
         data: kb,
       });

@@ -10,10 +10,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Fault.hasMany(models.Knowledge_Base, {
-        foreignKey: "id_fault",
+        foreignKey: "fault_id",
       });
       Fault.hasMany(models.Result, {
-        foreignKey: "id_fault",
+        foreignKey: "fault_id",
       });
     }
   }

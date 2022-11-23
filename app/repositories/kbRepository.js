@@ -3,15 +3,15 @@ const { Knowledge_Base, Indication, Fault } = require("../models");
 module.exports = {
   create(data) {
     return Knowledge_Base.create({
-      id_fault: data.id_fault,
-      id_indication: data.id_indication,
+      fault_id: data.fault_id,
+      indication_id: data.indication_id,
     });
   },
   update(id, data) {
     return Knowledge_Base.update(
       {
-        id_indication: data.id_indication,
-        id_fault: data.id_fault,
+        indication_id: data.indication_id,
+        fault_id: data.fault_id,
       },
       {
         where: {
@@ -69,7 +69,7 @@ module.exports = {
         },
       ],
       where: {
-        id_fault: fault,
+        fault_id: fault,
       },
       attributes: [],
     });
@@ -83,7 +83,7 @@ module.exports = {
         },
       ],
       where: {
-        id_fault: fault,
+        fault_id: fault,
       },
       attributes: ["id"],
     });
