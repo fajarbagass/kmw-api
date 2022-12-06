@@ -3,6 +3,7 @@ const { Knowledge_Base, Indication, Fault } = require("../models");
 module.exports = {
   create(data) {
     return Knowledge_Base.create({
+      mb: data.mb,
       fault_id: data.fault_id,
       indication_id: data.indication_id,
     });
@@ -10,8 +11,9 @@ module.exports = {
   update(id, data) {
     return Knowledge_Base.update(
       {
-        indication_id: data.indication_id,
+        mb: data.mb,
         fault_id: data.fault_id,
+        indication_id: data.indication_id,
       },
       {
         where: {
@@ -31,61 +33,33 @@ module.exports = {
     return Knowledge_Base.findAll({
       include: [
         {
-          model: Indication,
-          attributes: ["id", "code", "name", "mb"],
+          model: Fault,
+          attributes: ["id", "code", "name", "solution"],
         },
         {
-          model: Fault,
-          attributes: ["id", "code", "name", "md", "solution"],
+          model: Indication,
+          attributes: ["id", "code", "name"],
         },
       ],
-      attributes: ["id"],
+      attributes: ["id", "mb"],
     });
   },
   find(id) {
     return Knowledge_Base.findAll({
       include: [
         {
-          model: Indication,
-          attributes: ["id", "code", "name", "mb"],
+          model: Fault,
+          attributes: ["id", "code", "name", "solution"],
         },
         {
-          model: Fault,
-          attributes: ["id", "code", "name", "md", "solution"],
+          model: Indication,
+          attributes: ["id", "code", "name"],
         },
       ],
       where: {
         id,
       },
-      attributes: ["id"],
-    });
-  },
-  findFault(fault) {
-    return Knowledge_Base.findOne({
-      include: [
-        {
-          model: Fault,
-          attributes: ["id", "code", "name", "md", "solution"],
-        },
-      ],
-      where: {
-        fault_id: fault,
-      },
-      attributes: [],
-    });
-  },
-  findIndication(fault) {
-    return Knowledge_Base.findAll({
-      include: [
-        {
-          model: Indication,
-          attributes: ["id", "code", "name", "mb"],
-        },
-      ],
-      where: {
-        fault_id: fault,
-      },
-      attributes: ["id"],
+      attributes: ["id", "mb"],
     });
   },
 };

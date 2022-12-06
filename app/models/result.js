@@ -12,13 +12,35 @@ module.exports = (sequelize, DataTypes) => {
       Result.belongsTo(models.Fault, {
         foreignKey: "fault_id",
       });
-      Result.belongsTo(models.Consultation, {
-        foreignKey: "consultation_id",
+      Result.belongsTo(models.Client, {
+        foreignKey: "client_id",
       });
     }
   }
   Result.init(
     {
+      md: {
+        type: DataTypes.FLOAT,
+        validate: {
+          notEmpty: {
+            msg: "MD is required",
+          },
+          isFloat: {
+            msg: "MD is not valid",
+          },
+        },
+      },
+      client_id: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: {
+            msg: "Client is required",
+          },
+          isNumeric: {
+            msg: "Client is not valid",
+          },
+        },
+      },
       fault_id: {
         type: DataTypes.INTEGER,
         validate: {
@@ -27,17 +49,6 @@ module.exports = (sequelize, DataTypes) => {
           },
           isNumeric: {
             msg: "Fault is not valid",
-          },
-        },
-      },
-      consultation_id: {
-        type: DataTypes.INTEGER,
-        validate: {
-          notEmpty: {
-            msg: "Consultation is required",
-          },
-          isNumeric: {
-            msg: "Consultation is not valid",
           },
         },
       },

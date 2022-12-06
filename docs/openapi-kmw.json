@@ -1,0 +1,1697 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "KMW AUTOWORKS",
+    "description": "This is a sample server kmw server",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000",
+      "description": "Internal staging server for develop"
+    }
+  ],
+  "paths": {
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": ["Auth Admin"],
+        "summary": "Login Admin",
+        "description": "Login using username and password to access the system",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "example": "Admin"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "Admin"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "Admin KMW"
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "Admin"
+                        },
+                        "token": {
+                          "type": "string",
+                          "example": "eyJhbGciOiJIUzI1NiIsxxxxxxx"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/WrongEmailPassword"
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/admin": {
+      "get": {
+        "tags": ["Auth Admin"],
+        "summary": "Get current admin data",
+        "description": "Display data of currently logged in users",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "Admin KMW"
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "Admin"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Auth Admin"],
+        "summary": "Update admin data",
+        "description": "Updating admin data",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Admin KMW"
+                  },
+                  "username": {
+                    "type": "string",
+                    "example": "Admin"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Admin updated successfull"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "description": "adminNotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "adminNotFound"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Admin is not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/admin/password": {
+      "put": {
+        "tags": ["Auth Admin"],
+        "summary": "Update admin password",
+        "description": "Updating admin password",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "old_password": {
+                    "type": "string",
+                    "example": "Admin"
+                  },
+                  "new_password": {
+                    "type": "string",
+                    "example": "AdminKMW"
+                  },
+                  "confirm_password": {
+                    "type": "string",
+                    "example": "AdminKMW"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Password changed successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/client/create": {
+      "post": {
+        "tags": ["Client"],
+        "summary": "create client data",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Client 1"
+                  },
+                  "category": {
+                    "type": "string",
+                    "example": "Toyota"
+                  },
+                  "car": {
+                    "type": "string",
+                    "example": "Alphard"
+                  },
+                  "car_year": {
+                    "type": "integer",
+                    "example": 2002
+                  },
+                  "number_plat": {
+                    "type": "string",
+                    "example": "B 3642 R"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/client1"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/client": {
+      "get": {
+        "tags": ["Client"],
+        "summary": "find All client data",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/findAllClients"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/client/{id}": {
+      "get": {
+        "tags": ["Client"],
+        "summary": "get client data by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/client1"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Client"],
+        "summary": "delete client",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Client deleted successfull"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "description": "clientNotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "clientNotFound"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Client is not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/fault/create": {
+      "post": {
+        "tags": ["Fault"],
+        "summary": "create fault",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "example": "K001"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Kerusakan 1"
+                  },
+                  "solution": {
+                    "type": "string",
+                    "example": "Solusi 1"
+                  },
+                  "md": {
+                    "type": "integer",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/fault1"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/fault/{id}": {
+      "put": {
+        "tags": ["Fault"],
+        "summary": "update fault",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "example": "K001"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Kerusakan 1"
+                  },
+                  "solution": {
+                    "type": "string",
+                    "example": "Solusi diedit"
+                  },
+                  "md": {
+                    "type": "integer",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Fault updated successfull"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "description": "faultNotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "faultNotFound"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Fault is not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Fault"],
+        "summary": "delete fault",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Fault deleted successfull"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "description": "faultNotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "faultNotFound"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Fault is not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/fault": {
+      "get": {
+        "tags": ["Fault"],
+        "summary": "find all fault",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/findAllFaults"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/indication/create": {
+      "post": {
+        "tags": ["Indication"],
+        "summary": "create indication",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "example": "G001"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Gejala 1"
+                  },
+                  "mb": {
+                    "type": "integer",
+                    "example": 0.6
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/indication1"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/indication/{id}": {
+      "put": {
+        "tags": ["Indication"],
+        "summary": "update indication",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "example": "G001"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Gejala 1"
+                  },
+                  "mb": {
+                    "type": "integer",
+                    "example": 0.7
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Indication updated successfull"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "description": "indicationNotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "indicationNotFound"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Indication is not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Indication"],
+        "summary": "delete indication",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Indication deleted successfull"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "description": "indicationNotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "indicationNotFound"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Indication is not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/indication": {
+      "get": {
+        "tags": ["Indication"],
+        "summary": "find all indication",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/findAllIndications"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/knowledge-base/create": {
+      "post": {
+        "tags": ["Knowledge Base"],
+        "summary": "create knowledge base",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fault_id": {
+                    "type": "string",
+                    "example": 1
+                  },
+                  "indication_id": {
+                    "type": "string",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/knowledge-base"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/knowledge-base/{id}": {
+      "put": {
+        "tags": ["Knowledge Base"],
+        "summary": "update knowledge base",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fault_id": {
+                    "type": "string",
+                    "example": 1
+                  },
+                  "indication_id": {
+                    "type": "string",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Knowledge Base updated successfull"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "description": "kbNotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "kbnNotFound"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Knowledge Base is not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Knowledge Base"],
+        "summary": "delete knowledge base",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Knowledge Base deleted successfull"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "description": "kbNotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "kbNotFound"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Knowledge Base is not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/knowledge-base": {
+      "get": {
+        "tags": ["Knowledge Base"],
+        "summary": "find all knowledge base",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/findAllKnowledge-base"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/consultation/create": {
+      "post": {
+        "tags": ["Consultation"],
+        "summary": "create consultation",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "client_id": {
+                    "type": "string",
+                    "example": 1
+                  },
+                  "indication_id": {
+                    "type": "string",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/consultation"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/consultation/{id}": {
+      "delete": {
+        "tags": ["Consultation"],
+        "summary": "delete consultation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Consultation deleted successfull"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "consultationNotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "consultationNotFound"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Consultation is not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "client1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Client 1"
+          },
+          "category": {
+            "type": "string",
+            "example": "Category 1"
+          },
+          "car": {
+            "type": "string",
+            "example": "Car 1"
+          },
+          "car_year": {
+            "type": "integer",
+            "example": 2002
+          },
+          "number_plat": {
+            "type": "string",
+            "example": "B 3642 R"
+          }
+        }
+      },
+      "client2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 2
+          },
+          "name": {
+            "type": "string",
+            "example": "Cient 2"
+          },
+          "category": {
+            "type": "string",
+            "example": "Category 2"
+          },
+          "car": {
+            "type": "string",
+            "example": "Car 2"
+          },
+          "car_year": {
+            "type": "integer",
+            "example": 2005
+          },
+          "number_plat": {
+            "type": "string",
+            "example": "B 8436 W"
+          }
+        }
+      },
+      "findAllClients": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/client1"
+          },
+          {
+            "$ref": "#/components/schemas/client2"
+          }
+        ]
+      },
+      "fault1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "code": {
+            "type": "string",
+            "example": "K001"
+          },
+          "name": {
+            "type": "string",
+            "example": "Kerusakan 1"
+          },
+          "solution": {
+            "type": "string",
+            "example": "Solusi 1"
+          },
+          "md": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "fault2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 2
+          },
+          "code": {
+            "type": "string",
+            "example": "K002"
+          },
+          "name": {
+            "type": "string",
+            "example": "Kerusakan 2"
+          },
+          "solution": {
+            "type": "string",
+            "example": "Solusi 2"
+          },
+          "md": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "findAllFaults": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/fault1"
+          },
+          {
+            "$ref": "#/components/schemas/fault2"
+          }
+        ]
+      },
+      "indication1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "code": {
+            "type": "string",
+            "example": "G001"
+          },
+          "name": {
+            "type": "string",
+            "example": "Gejala 1"
+          },
+          "mb": {
+            "type": "integer",
+            "example": 0.6
+          }
+        }
+      },
+      "indication2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 2
+          },
+          "code": {
+            "type": "string",
+            "example": "G002"
+          },
+          "name": {
+            "type": "string",
+            "example": "Gejala 2"
+          },
+          "mb": {
+            "type": "integer",
+            "example": 0.8
+          }
+        }
+      },
+      "findAllIndications": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/indication1"
+          },
+          {
+            "$ref": "#/components/schemas/indication2"
+          }
+        ]
+      },
+      "knowledge-base": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "fault_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "indication_id": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "knowledge-base1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "Fault": {
+            "$ref": "#/components/schemas/fault1"
+          },
+          "Indication": {
+            "$ref": "#/components/schemas/indication1"
+          }
+        }
+      },
+      "knowledge-base2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 2
+          },
+          "Fault": {
+            "$ref": "#/components/schemas/fault1"
+          },
+          "Indication": {
+            "$ref": "#/components/schemas/indication2"
+          }
+        }
+      },
+      "findAllKnowledge-base": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/knowledge-base1"
+          },
+          {
+            "$ref": "#/components/schemas/knowledge-base2"
+          }
+        ]
+      },
+      "consultation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "client_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "indication_id": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "BadRequest",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "badRequest"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "please fill all required fields and make sure the data is valid"
+                }
+              }
+            }
+          }
+        }
+      },
+      "WrongEmailPassword": {
+        "description": "Email or Password Are Wrong",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "wrongEmailPassword"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "username or password are wrong"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "notLogin"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "You are not login/access_token is wrong"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -9,15 +9,17 @@ const {
 module.exports = {
   create(data) {
     return Result.create({
+      md: data.md,
+      client_id: data.client_id,
       fault_id: data.fault_id,
-      consultation_id: data.consultation_id,
     });
   },
   update(id, data) {
     return Result.update(
       {
+        md: data.md,
+        client_id: data.client_id,
         fault_id: data.fault_id,
-        consultation_id: data.consultation_id,
       },
       {
         where: {
@@ -37,132 +39,47 @@ module.exports = {
     return Result.findAll({
       include: [
         {
-          model: Fault,
-          attributes: ["id", "code", "name", "md", "solution"],
-        },
-        {
-          model: Consultation,
-          attributes: ["id"],
-          include: [
-            {
-              model: Client,
-              attributes: [
-                "id",
-                "name",
-                "category",
-                "car",
-                "car_year",
-                "number_plat",
-              ],
-            },
-            {
-              model: Indication,
-              attributes: ["id", "code", "name", "mb"],
-            },
+          model: Client,
+          attributes: [
+            "id",
+            "name",
+            "category",
+            "car",
+            "car_year",
+            "number_plat",
           ],
         },
+        {
+          model: Fault,
+          attributes: ["id", "code", "name", "solution"],
+        },
       ],
-      attributes: ["id"],
+      attributes: ["id", "md"],
     });
   },
   find(id) {
     return Result.findAll({
       include: [
         {
-          model: Fault,
-          attributes: ["id", "code", "name", "md", "solution"],
+          model: Client,
+          attributes: [
+            "id",
+            "name",
+            "category",
+            "car",
+            "car_year",
+            "number_plat",
+          ],
         },
         {
-          model: Consultation,
-          attributes: ["id"],
-          include: [
-            {
-              model: Client,
-              attributes: [
-                "id",
-                "name",
-                "category",
-                "car",
-                "car_year",
-                "number_plat",
-              ],
-            },
-            {
-              model: Indication,
-              attributes: ["id", "code", "name", "mb"],
-            },
-          ],
+          model: Fault,
+          attributes: ["id", "code", "name", "md", "solution"],
         },
       ],
       where: {
         id,
       },
-      attributes: ["id"],
-    });
-  },
-  findFault(user) {
-    return Result.findOne({
-      include: [
-        {
-          model: Fault,
-          attributes: ["id", "code", "name", "md", "solution"],
-        },
-        {
-          model: Consultation,
-          attributes: [],
-          where: {
-            client_id: user,
-          },
-        },
-      ],
-      attributes: ["id"],
-    });
-  },
-  findUser(user) {
-    return Result.findOne({
-      include: [
-        {
-          model: Consultation,
-          include: [
-            {
-              model: Client,
-              attributes: [
-                "id",
-                "name",
-                "category",
-                "car",
-                "car_year",
-                "number_plat",
-              ],
-            },
-          ],
-          attributes: ["id"],
-          where: {
-            client_id: user,
-          },
-        },
-      ],
-      attributes: ["id"],
-    });
-  },
-  findIndication(user) {
-    return Result.findAll({
-      include: [
-        {
-          model: Consultation,
-          include: [
-            {
-              model: Indication,
-              attributes: ["id", "code", "name", "mb"],
-            },
-          ],
-          attributes: ["id"],
-          where: {
-            client_id: user,
-          },
-        },
-      ],
-      attributes: ["id"],
+      attributes: ["id", "md"],
     });
   },
 };

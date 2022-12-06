@@ -26,6 +26,20 @@ module.exports = {
       }
     }
   },
+  async getAll(req, res) {
+    try {
+      const client = await clientServices.findAll();
+      res.status(200).json({
+        status: "success",
+        data: client,
+      });
+    } catch (error) {
+      res.status(500).json({
+        name: error.name,
+        message: error.message,
+      });
+    }
+  },
   async find(req, res) {
     try {
       const id = req.params;
@@ -46,20 +60,6 @@ module.exports = {
           message: error.message,
         });
       }
-    }
-  },
-  async getAll(req, res) {
-    try {
-      const client = await clientServices.findAll();
-      res.status(200).json({
-        status: "success",
-        data: client,
-      });
-    } catch (error) {
-      res.status(500).json({
-        name: error.name,
-        message: error.message,
-      });
     }
   },
   async delete(req, res) {

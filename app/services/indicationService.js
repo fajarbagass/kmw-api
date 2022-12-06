@@ -21,7 +21,7 @@ module.exports = {
       if (!indication) {
         throw {
           name: "indicationNotFound",
-          message: "indication is not found",
+          message: "Indication is not found",
         };
       }
       return indication;

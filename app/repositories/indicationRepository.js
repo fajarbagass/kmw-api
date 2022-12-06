@@ -5,7 +5,6 @@ module.exports = {
     return Indication.create({
       code: data.code,
       name: data.name,
-      mb: data.mb,
     });
   },
   getAll() {
@@ -19,7 +18,6 @@ module.exports = {
       {
         code: data.code,
         name: data.name,
-        mb: data.mb,
       },
       {
         where: {

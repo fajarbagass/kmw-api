@@ -43,7 +43,7 @@ module.exports = {
         },
         {
           model: Indication,
-          attributes: ["id", "code", "name", "mb"],
+          attributes: ["id", "code", "name"],
         },
       ],
       attributes: ["id"],
@@ -65,48 +65,13 @@ module.exports = {
         },
         {
           model: Indication,
-          attributes: ["id", "code", "name", "mb"],
+          attributes: ["id", "code", "name"],
         },
       ],
       where: {
         id,
       },
       attributes: ["id"],
-    });
-  },
-  findClient(user) {
-    return Consultation.findOne({
-      include: [
-        {
-          model: Client,
-          attributes: [
-            "id",
-            "name",
-            "category",
-            "car",
-            "car_year",
-            "number_plat",
-          ],
-        },
-      ],
-      where: {
-        client_id: user,
-      },
-      attributes: [],
-    });
-  },
-  findIndication(user) {
-    return Consultation.findAll({
-      include: [
-        {
-          model: Indication,
-          attributes: ["id", "code", "name", "mb"],
-        },
-      ],
-      where: {
-        client_id: user,
-      },
-      attributes: [],
     });
   },
 };

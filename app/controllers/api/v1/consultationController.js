@@ -26,6 +26,42 @@ module.exports = {
       }
     }
   },
+  async getAll(req, res) {
+    try {
+      const consultation = await consultationServices.findAll();
+      res.status(200).json({
+        status: "success",
+        data: consultation,
+      });
+    } catch (error) {
+      res.status(500).json({
+        name: error.name,
+        message: error.message,
+      });
+    }
+  },
+  async find(req, res) {
+    try {
+      const id = req.params;
+      const consultation = await consultationServices.find(id);
+      res.status(200).json({
+        status: "success",
+        data: consultation,
+      });
+    } catch (error) {
+      if (error.name === "consultationNotFound") {
+        res.status(404).json({
+          name: error.name,
+          message: error.message,
+        });
+      } else {
+        res.status(500).json({
+          name: error.name,
+          message: error.message,
+        });
+      }
+    }
+  },
   async update(req, res) {
     try {
       const id = req.params.id;
@@ -64,66 +100,6 @@ module.exports = {
       res.status(200).json({
         status: "success",
         message: "Consultation deleted sucessfully",
-      });
-    } catch (error) {
-      if (error.name === "consultationNotFound") {
-        res.status(404).json({
-          name: error.name,
-          message: error.message,
-        });
-      } else {
-        res.status(500).json({
-          name: error.name,
-          message: error.message,
-        });
-      }
-    }
-  },
-  async getAll(req, res) {
-    try {
-      const consultation = await consultationServices.findAll();
-      res.status(200).json({
-        status: "success",
-        data: consultation,
-      });
-    } catch (error) {
-      res.status(500).json({
-        name: error.name,
-        message: error.message,
-      });
-    }
-  },
-  async find(req, res) {
-    try {
-      const id = req.params;
-      const consultation = await consultationServices.find(id);
-      res.status(200).json({
-        status: "success",
-        data: consultation,
-      });
-    } catch (error) {
-      if (error.name === "consultationNotFound") {
-        res.status(404).json({
-          name: error.name,
-          message: error.message,
-        });
-      } else {
-        res.status(500).json({
-          name: error.name,
-          message: error.message,
-        });
-      }
-    }
-  },
-  async findConsultation(req, res) {
-    try {
-      const id = req.params;
-      const indication = await consultationServices.findIndication(id);
-      const client = await consultationServices.findClient(id);
-      res.status(200).json({
-        status: "success",
-        client,
-        indication,
       });
     } catch (error) {
       if (error.name === "consultationNotFound") {

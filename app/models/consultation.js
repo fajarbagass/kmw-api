@@ -15,9 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       Consultation.belongsTo(models.Indication, {
         foreignKey: "indication_id",
       });
-      Consultation.hasMany(models.Result, {
-        foreignKey: "consultation_id",
-      });
     }
   }
   Consultation.init(

@@ -19,14 +19,14 @@ module.exports = (sequelize, DataTypes) => {
   }
   Knowledge_Base.init(
     {
-      indication_id: {
-        type: DataTypes.INTEGER,
+      mb: {
+        type: DataTypes.FLOAT,
         validate: {
           notEmpty: {
-            msg: "Indication is required",
+            msg: "MB is required",
           },
-          isNumeric: {
-            msg: "Indication is not valid",
+          isFloat: {
+            msg: "MB is not valid",
           },
         },
       },
@@ -38,6 +38,17 @@ module.exports = (sequelize, DataTypes) => {
           },
           isNumeric: {
             msg: "Fault is not valid",
+          },
+        },
+      },
+      indication_id: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: {
+            msg: "Indication is required",
+          },
+          isNumeric: {
+            msg: "Indication is not valid",
           },
         },
       },

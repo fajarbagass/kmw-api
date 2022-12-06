@@ -9,10 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      fault_id: {
+      md: {
+        type: Sequelize.FLOAT,
+      },
+      client_id: {
         type: Sequelize.INTEGER,
       },
-      consultation_id: {
+      fault_id: {
         type: Sequelize.INTEGER,
       },
       createdAt: {

@@ -15,9 +15,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
-      mb: {
-        type: Sequelize.FLOAT,
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

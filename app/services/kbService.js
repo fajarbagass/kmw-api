@@ -8,6 +8,27 @@ module.exports = {
       throw error;
     }
   },
+  async findAll() {
+    try {
+      return await kbRepository.getAll();
+    } catch (error) {
+      throw error;
+    }
+  },
+  async find(id) {
+    try {
+      const kb = await kbRepository.find(id);
+      if (!kb) {
+        throw {
+          name: "kbNotFound",
+          message: "Knowledge Base is not found",
+        };
+      }
+      return kb;
+    } catch (error) {
+      throw error;
+    }
+  },
   async update(id, data) {
     try {
       const kb = await kbRepository.find(id);
@@ -34,55 +55,6 @@ module.exports = {
       } else {
         await kbRepository.delete(id);
       }
-    } catch (error) {
-      throw error;
-    }
-  },
-  async findAll() {
-    try {
-      return await kbRepository.getAll();
-    } catch (error) {
-      throw error;
-    }
-  },
-  async find(id) {
-    try {
-      const kb = await kbRepository.find(id);
-      if (!kb) {
-        throw {
-          name: "kbNotFound",
-          message: "Knowledge Base is not found",
-        };
-      }
-      return kb;
-    } catch (error) {
-      throw error;
-    }
-  },
-  async findFault(fault) {
-    try {
-      const kb = await kbRepository.findFault(fault.id);
-      if (!kb) {
-        throw {
-          name: "kbNotFound",
-          message: "Knowledge Base is not found",
-        };
-      }
-      return kb;
-    } catch (error) {
-      throw error;
-    }
-  },
-  async findIndication(fault) {
-    try {
-      const kb = await kbRepository.findIndication(fault.id);
-      if (!kb) {
-        throw {
-          name: "kbNotFound",
-          message: "Knowledge Base is not found",
-        };
-      }
-      return kb;
     } catch (error) {
       throw error;
     }

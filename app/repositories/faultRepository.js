@@ -6,7 +6,6 @@ module.exports = {
       code: data.code,
       name: data.name,
       solution: data.solution,
-      md: data.md,
     });
   },
   getAll() {
@@ -21,7 +20,6 @@ module.exports = {
         code: data.code,
         name: data.name,
         solution: data.solution,
-        md: data.md,
       },
       {
         where: {

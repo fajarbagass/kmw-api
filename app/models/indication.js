@@ -35,17 +35,6 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      mb: {
-        type: DataTypes.FLOAT,
-        validate: {
-          notEmpty: {
-            msg: "MB is required",
-          },
-          isFloat: {
-            msg: "MB is not valid",
-          },
-        },
-      },
     },
     {
       sequelize,

@@ -205,7 +205,7 @@
   "resolved" "https://registry.npmjs.org/bluebird/-/bluebird-3.7.2.tgz"
   "version" "3.7.2"
 
-"body-parser@1.20.1":
+"body-parser@^1.20.1", "body-parser@1.20.1":
   "integrity" "sha512-jWi7abTbYwajOytWCQc37VulmWiRae5RyTpaCyDcS5/lMdtwSz5lOpDE67srw/HYe35f1z3fDQw+3txg7gNtWw=="
   "resolved" "https://registry.npmjs.org/body-parser/-/body-parser-1.20.1.tgz"
   "version" "1.20.1"
@@ -783,7 +783,7 @@
     "lodash" "^4.17.21"
     "validator" "^13.7.0"
 
-"express@^4.18.2":
+"express@^4.18.2", "express@>=4.0.0":
   "integrity" "sha512-5/PsL6iGPdfQ/lKM1UuielYgv3BUoJfz1aUwU9vHZ+J7gyvwdQXFEBIEIaxeGf0GIcreATNyBExtalisDbuMqQ=="
   "resolved" "https://registry.npmjs.org/express/-/express-4.18.2.tgz"
   "version" "4.18.2"
@@ -2174,6 +2174,18 @@
   "integrity" "sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w=="
   "resolved" "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   "version" "1.0.0"
+
+"swagger-ui-dist@>=4.11.0":
+  "integrity" "sha512-V3eIa28lwB6gg7/wfNvAbjwJYmDXy1Jo1POjyTzlB6wPcHiGlRxq39TSjYGVjQrUSAzpv+a7nzp7mDxgNy57xA=="
+  "resolved" "https://registry.npmjs.org/swagger-ui-dist/-/swagger-ui-dist-4.15.5.tgz"
+  "version" "4.15.5"
+
+"swagger-ui-express@^4.6.0":
+  "integrity" "sha512-ZxpQFp1JR2RF8Ar++CyJzEDdvufa08ujNUJgMVTMWPi86CuQeVdBtvaeO/ysrz6dJAYXf9kbVNhWD7JWocwqsA=="
+  "resolved" "https://registry.npmjs.org/swagger-ui-express/-/swagger-ui-express-4.6.0.tgz"
+  "version" "4.6.0"
+  dependencies:
+    "swagger-ui-dist" ">=4.11.0"
 
 "text-table@^0.2.0":
   "integrity" "sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw=="
