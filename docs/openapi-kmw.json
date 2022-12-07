@@ -504,10 +504,6 @@
                   "solution": {
                     "type": "string",
                     "example": "Solusi 1"
-                  },
-                  "md": {
-                    "type": "integer",
-                    "example": 1
                   }
                 }
               }
@@ -583,10 +579,6 @@
                   "solution": {
                     "type": "string",
                     "example": "Solusi diedit"
-                  },
-                  "md": {
-                    "type": "integer",
-                    "example": 1
                   }
                 }
               }
@@ -766,10 +758,6 @@
                   "name": {
                     "type": "string",
                     "example": "Gejala 1"
-                  },
-                  "mb": {
-                    "type": "integer",
-                    "example": 0.6
                   }
                 }
               }
@@ -841,10 +829,6 @@
                   "name": {
                     "type": "string",
                     "example": "Gejala 1"
-                  },
-                  "mb": {
-                    "type": "integer",
-                    "example": 0.7
                   }
                 }
               }
@@ -1017,6 +1001,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "mb": {
+                    "type": "float",
+                    "example": 0.7
+                  },
                   "fault_id": {
                     "type": "string",
                     "example": 1
@@ -1088,6 +1076,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "mb": {
+                    "type": "float",
+                    "example": 0.5
+                  },
                   "fault_id": {
                     "type": "string",
                     "example": 1
@@ -1365,6 +1357,190 @@
           }
         }
       }
+    },
+    "/api/v1/consultation": {
+      "get": {
+        "tags": ["Consultation"],
+        "summary": "find all consultation",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/findAllConsultation"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/result/create": {
+      "post": {
+        "tags": ["Result"],
+        "summary": "create result",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "md": {
+                    "type": "float",
+                    "example": 0.8
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "example": 1
+                  },
+                  "fault_id": {
+                    "type": "string",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/result"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/result/{id}": {
+      "delete": {
+        "tags": ["Result"],
+        "summary": "delete result",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Result deleted successfull"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "resultNotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "resultNotFound"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Result is not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/api/v1/result": {
+      "get": {
+        "tags": ["Result"],
+        "summary": "find all result",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/findAllResult"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1462,10 +1638,6 @@
           "solution": {
             "type": "string",
             "example": "Solusi 1"
-          },
-          "md": {
-            "type": "integer",
-            "example": 1
           }
         }
       },
@@ -1487,10 +1659,6 @@
           "solution": {
             "type": "string",
             "example": "Solusi 2"
-          },
-          "md": {
-            "type": "integer",
-            "example": 1
           }
         }
       },
@@ -1518,10 +1686,6 @@
           "name": {
             "type": "string",
             "example": "Gejala 1"
-          },
-          "mb": {
-            "type": "integer",
-            "example": 0.6
           }
         }
       },
@@ -1539,10 +1703,6 @@
           "name": {
             "type": "string",
             "example": "Gejala 2"
-          },
-          "mb": {
-            "type": "integer",
-            "example": 0.8
           }
         }
       },
@@ -1563,6 +1723,10 @@
             "type": "integer",
             "example": 1
           },
+          "mb": {
+            "type": "float",
+            "example": 0.7
+          },
           "fault_id": {
             "type": "integer",
             "example": 1
@@ -1580,6 +1744,10 @@
             "type": "integer",
             "example": 1
           },
+          "mb": {
+            "type": "float",
+            "example": 0.7
+          },
           "Fault": {
             "$ref": "#/components/schemas/fault1"
           },
@@ -1594,6 +1762,10 @@
           "id": {
             "type": "integer",
             "example": 2
+          },
+          "mb": {
+            "type": "float",
+            "example": 0.5
           },
           "Fault": {
             "$ref": "#/components/schemas/fault1"
@@ -1629,6 +1801,115 @@
             "example": 1
           }
         }
+      },
+      "consultation1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "Client": {
+            "$ref": "#/components/schemas/client1"
+          },
+          "Indication": {
+            "$ref": "#/components/schemas/indication1"
+          }
+        }
+      },
+      "consultation2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 2
+          },
+          "Client": {
+            "$ref": "#/components/schemas/client1"
+          },
+          "Indication": {
+            "$ref": "#/components/schemas/indication2"
+          }
+        }
+      },
+      "findAllConsultation": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/consultation1"
+          },
+          {
+            "$ref": "#/components/schemas/consultation2"
+          }
+        ]
+      },
+      "result": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "md": {
+            "type": "float",
+            "example": 0.8
+          },
+          "client_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "fault_id": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "result1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "md": {
+            "type": "float",
+            "example": 0.8
+          },
+          "Client": {
+            "$ref": "#/components/schemas/client1"
+          },
+          "Fault": {
+            "$ref": "#/components/schemas/fault1"
+          }
+        }
+      },
+      "result2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 2
+          },
+          "md": {
+            "type": "float",
+            "example": 0.7
+          },
+          "Client": {
+            "$ref": "#/components/schemas/client2"
+          },
+          "Fault": {
+            "$ref": "#/components/schemas/fault2"
+          }
+        }
+      },
+      "findAllResult": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/result1"
+          },
+          {
+            "$ref": "#/components/schemas/result2"
+          }
+        ]
       }
     },
     "responses": {
