@@ -14,7 +14,7 @@
   "paths": {
     "/api/v1/auth/login": {
       "post": {
-        "tags": ["Auth Admin"],
+        "tags": ["Admin"],
         "summary": "Login Admin",
         "description": "Login using username and password to access the system",
         "requestBody": {
@@ -37,7 +37,7 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -88,7 +88,7 @@
     },
     "/api/v1/auth/admin": {
       "get": {
-        "tags": ["Auth Admin"],
+        "tags": ["Admin"],
         "summary": "Get current admin data",
         "description": "Display data of currently logged in users",
         "security": [
@@ -135,7 +135,7 @@
         }
       },
       "put": {
-        "tags": ["Auth Admin"],
+        "tags": ["Admin"],
         "summary": "Update admin data",
         "description": "Updating admin data",
         "security": [
@@ -214,7 +214,7 @@
     },
     "/api/v1/auth/admin/password": {
       "put": {
-        "tags": ["Auth Admin"],
+        "tags": ["Admin"],
         "summary": "Update admin password",
         "description": "Updating admin password",
         "security": [
@@ -403,6 +403,26 @@
                       "items": {
                         "$ref": "#/components/schemas/client1"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "clientNotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "clientNotFound"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Client is not found"
                     }
                   }
                 }
@@ -701,6 +721,67 @@
             "description": "Internal Service Error"
           }
         }
+      },
+      "get": {
+        "tags": ["Fault"],
+        "summary": "get fault data by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/fault1"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "faultNotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "faultNotFound"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Fault is not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
       }
     },
     "/api/v1/fault": {
@@ -926,6 +1007,67 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "description": "indicationNotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "indicationNotFound"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Indication is not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Indication"],
+        "summary": "get indication data by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/indication1"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "404": {
             "description": "indicationNotFound",
@@ -1195,6 +1337,67 @@
                     "status": {
                       "type": "string",
                       "example": "kbNotFound"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Knowledge Base is not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Knowledge Base"],
+        "summary": "get knowledge base data by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/knowledge-base1"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "kbNotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "kbnNotFound"
                     },
                     "message": {
                       "type": "string",

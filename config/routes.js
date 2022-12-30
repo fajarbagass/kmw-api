@@ -90,8 +90,8 @@ apiRouter.delete(
   middlewares.authorize,
   faultControllers.delete
 );
-apiRouter.get("/api/v1/fault", faultControllers.getAll);
 apiRouter.get("/api/v1/fault/:id", faultControllers.find);
+apiRouter.get("/api/v1/fault", faultControllers.getAll);
 
 // indication
 apiRouter.post(
@@ -113,8 +113,8 @@ apiRouter.delete(
   middlewares.authorize,
   indicationControllers.delete
 );
-apiRouter.get("/api/v1/indication", indicationControllers.getAll);
 apiRouter.get("/api/v1/indication/:id", indicationControllers.find);
+apiRouter.get("/api/v1/indication", indicationControllers.getAll);
 
 // Knowlegde Base
 apiRouter.post(
@@ -136,8 +136,8 @@ apiRouter.delete(
   middlewares.authorize,
   kbControllers.delete
 );
-apiRouter.get("/api/v1/knowledge-base", kbControllers.getAll);
 apiRouter.get("/api/v1/knowledge-base/:id", kbControllers.find);
+apiRouter.get("/api/v1/knowledge-base", kbControllers.getAll);
 
 // consultation
 apiRouter.post(
