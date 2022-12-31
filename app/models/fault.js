@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       solution: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         validate: {
           notEmpty: {
             msg: "Solution is required",
