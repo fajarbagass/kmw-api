@@ -58,7 +58,7 @@ module.exports = {
     });
   },
   find(id) {
-    return Result.findAll({
+    return Result.findOne({
       include: [
         {
           model: Client,

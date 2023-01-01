@@ -45,7 +45,7 @@ module.exports = {
     });
   },
   find(id) {
-    return Knowledge_Base.findAll({
+    return Knowledge_Base.findOne({
       include: [
         {
           model: Fault,

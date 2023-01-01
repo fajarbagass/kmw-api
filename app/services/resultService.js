@@ -15,9 +15,9 @@ module.exports = {
       throw error;
     }
   },
-  async find(id) {
+  async find(data) {
     try {
-      const result = await resultRepository.find(id);
+      const result = await resultRepository.find(data.id);
       if (!result) {
         throw {
           name: "resultNotFound",

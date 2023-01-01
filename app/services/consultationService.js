@@ -15,9 +15,9 @@ module.exports = {
       throw error;
     }
   },
-  async find(id) {
+  async find(data) {
     try {
-      const consultation = await consultationRepository.find(id);
+      const consultation = await consultationRepository.find(data.id);
       if (!consultation) {
         throw {
           name: "consultationNotFound",

@@ -15,9 +15,9 @@ module.exports = {
       throw error;
     }
   },
-  async find(id) {
+  async find(data) {
     try {
-      const kb = await kbRepository.find(id);
+      const kb = await kbRepository.find(data.id);
       if (!kb) {
         throw {
           name: "kbNotFound",

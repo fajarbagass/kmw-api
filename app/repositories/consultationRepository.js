@@ -50,7 +50,7 @@ module.exports = {
     });
   },
   find(id) {
-    return Consultation.findAll({
+    return Consultation.findOne({
       include: [
         {
           model: Client,
