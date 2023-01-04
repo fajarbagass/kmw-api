@@ -1,15 +1,8 @@
-const {
-  Result,
-  Fault,
-  Consultation,
-  Client,
-  Indication,
-} = require("../models");
+const { Result, Fault, Client } = require("../models");
 
 module.exports = {
   create(data) {
     return Result.create({
-      md: data.md,
       client_id: data.client_id,
       fault_id: data.fault_id,
     });
@@ -18,8 +11,6 @@ module.exports = {
     return Result.update(
       {
         md: data.md,
-        client_id: data.client_id,
-        fault_id: data.fault_id,
       },
       {
         where: {

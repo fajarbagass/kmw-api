@@ -146,25 +146,23 @@ apiRouter.post(
   checkValidate,
   consultationControllers.create
 );
-apiRouter.delete(
-  "/api/v1/consultation/:id",
-  middlewares.authorize,
-  consultationControllers.delete
-);
+apiRouter.delete("/api/v1/consultation/:id", consultationControllers.delete);
 apiRouter.get("/api/v1/consultation", consultationControllers.getAll);
 
 // result
 apiRouter.post(
   "/api/v1/result/create",
-  resultValidation.resultDataValidate,
+  resultValidation.createResultValidate,
   checkValidate,
   resultControllers.create
 );
-apiRouter.delete(
+apiRouter.put(
   "/api/v1/result/:id",
-  middlewares.authorize,
-  resultControllers.delete
+  resultValidation.updateResultValidate,
+  checkValidate,
+  resultControllers.update
 );
+apiRouter.delete("/api/v1/result/:id", resultControllers.delete);
 apiRouter.get("/api/v1/result", resultControllers.getAll);
 
 /**
