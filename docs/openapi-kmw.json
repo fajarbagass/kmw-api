@@ -515,7 +515,7 @@
                 "properties": {
                   "code": {
                     "type": "string",
-                    "example": "K001"
+                    "example": "K01"
                   },
                   "name": {
                     "type": "string",
@@ -590,7 +590,7 @@
                 "properties": {
                   "code": {
                     "type": "string",
-                    "example": "K001"
+                    "example": "K01"
                   },
                   "name": {
                     "type": "string",
@@ -834,7 +834,7 @@
                 "properties": {
                   "code": {
                     "type": "string",
-                    "example": "G001"
+                    "example": "G01"
                   },
                   "name": {
                     "type": "string",
@@ -905,7 +905,7 @@
                 "properties": {
                   "code": {
                     "type": "string",
-                    "example": "G001"
+                    "example": "G01"
                   },
                   "name": {
                     "type": "string",
@@ -1148,11 +1148,11 @@
                     "example": 0.7
                   },
                   "fault_id": {
-                    "type": "string",
+                    "type": "integer",
                     "example": 1
                   },
                   "indication_id": {
-                    "type": "string",
+                    "type": "integer",
                     "example": 1
                   }
                 }
@@ -1223,11 +1223,11 @@
                     "example": 0.5
                   },
                   "fault_id": {
-                    "type": "string",
+                    "type": "integer",
                     "example": 1
                   },
                   "indication_id": {
-                    "type": "string",
+                    "type": "integer",
                     "example": 1
                   }
                 }
@@ -1458,12 +1458,16 @@
                 "type": "object",
                 "properties": {
                   "client_id": {
-                    "type": "string",
+                    "type": "integer",
                     "example": 1
                   },
                   "indication_id": {
-                    "type": "string",
+                    "type": "integer",
                     "example": 1
+                  },
+                  "cf_user": {
+                    "type": "float",
+                    "example": 0.7
                   }
                 }
               }
@@ -1605,11 +1609,11 @@
                 "type": "object",
                 "properties": {
                   "client_id": {
-                    "type": "string",
+                    "type": "integer",
                     "example": 1
                   },
                   "fault_id": {
-                    "type": "string",
+                    "type": "integer",
                     "example": 1
                   }
                 }
@@ -1828,7 +1832,7 @@
           },
           "code": {
             "type": "string",
-            "example": "K001"
+            "example": "K01"
           },
           "name": {
             "type": "string",
@@ -1849,7 +1853,7 @@
           },
           "code": {
             "type": "string",
-            "example": "K002"
+            "example": "K02"
           },
           "name": {
             "type": "string",
@@ -1880,7 +1884,7 @@
           },
           "code": {
             "type": "string",
-            "example": "G001"
+            "example": "G01"
           },
           "name": {
             "type": "string",
@@ -1897,7 +1901,7 @@
           },
           "code": {
             "type": "string",
-            "example": "G002"
+            "example": "G02"
           },
           "name": {
             "type": "string",
@@ -1998,6 +2002,10 @@
           "indication_id": {
             "type": "integer",
             "example": 1
+          },
+          "cf_user": {
+            "type": "float",
+            "example": 0.6
           }
         }
       },
@@ -2013,6 +2021,10 @@
           },
           "Indication": {
             "$ref": "#/components/schemas/indication1"
+          },
+          "cf_user": {
+            "type": "float",
+            "example": 0.6
           }
         }
       },
@@ -2028,6 +2040,10 @@
           },
           "Indication": {
             "$ref": "#/components/schemas/indication2"
+          },
+          "cf_user": {
+            "type": "float",
+            "example": 0.4
           }
         }
       },
