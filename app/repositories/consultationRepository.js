@@ -5,6 +5,7 @@ module.exports = {
     return Consultation.create({
       client_id: data.client_id,
       indication_id: data.indication_id,
+      cf_user: data.cf_user,
     });
   },
   update(id, data) {
@@ -12,6 +13,7 @@ module.exports = {
       {
         client_id: data.client_id,
         indication_id: data.indication_id,
+        cf_user: data.cf_user,
       },
       {
         where: {
@@ -46,7 +48,7 @@ module.exports = {
           attributes: ["id", "code", "name"],
         },
       ],
-      attributes: ["id"],
+      attributes: ["id", "cf_user"],
     });
   },
   find(id) {
@@ -71,7 +73,7 @@ module.exports = {
       where: {
         id,
       },
-      attributes: ["id"],
+      attributes: ["id", "cf_user"],
     });
   },
 };
