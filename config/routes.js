@@ -156,12 +156,6 @@ apiRouter.post(
   checkValidate,
   resultControllers.create
 );
-apiRouter.put(
-  "/api/v1/result/:id",
-  resultValidation.updateResultValidate,
-  checkValidate,
-  resultControllers.update
-);
 apiRouter.delete("/api/v1/result/:id", resultControllers.delete);
 apiRouter.get("/api/v1/result", resultControllers.getAll);
 

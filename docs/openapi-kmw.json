@@ -1647,84 +1647,6 @@
       }
     },
     "/api/v1/result/{id}": {
-      "put": {
-        "tags": ["Result"],
-        "summary": "update result",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "md": {
-                    "type": "float",
-                    "example": 0.8
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "success"
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Result updated successfull"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "description": "resultNotFound",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "resultNotFound"
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Result is not found"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Service Error"
-          }
-        }
-      },
       "delete": {
         "tags": ["Result"],
         "summary": "delete result",
@@ -2126,10 +2048,6 @@
             "type": "integer",
             "example": 1
           },
-          "md": {
-            "type": "float",
-            "example": null
-          },
           "client_id": {
             "type": "integer",
             "example": 1
@@ -2147,10 +2065,6 @@
             "type": "integer",
             "example": 1
           },
-          "md": {
-            "type": "float",
-            "example": 0.8
-          },
           "Client": {
             "$ref": "#/components/schemas/client1"
           },
@@ -2165,10 +2079,6 @@
           "id": {
             "type": "integer",
             "example": 2
-          },
-          "md": {
-            "type": "float",
-            "example": 0.7
           },
           "Client": {
             "$ref": "#/components/schemas/client2"
