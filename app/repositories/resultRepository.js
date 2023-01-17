@@ -10,7 +10,8 @@ module.exports = {
   update(id, data) {
     return Result.update(
       {
-        md: data.md,
+        client_id: data.client_id,
+        fault_id: data.fault_id,
       },
       {
         where: {
@@ -45,7 +46,7 @@ module.exports = {
           attributes: ["id", "code", "name", "solution"],
         },
       ],
-      attributes: ["id", "md"],
+      attributes: ["id"],
     });
   },
   find(id) {
@@ -64,13 +65,13 @@ module.exports = {
         },
         {
           model: Fault,
-          attributes: ["id", "code", "name", "md", "solution"],
+          attributes: ["id", "code", "name", "solution"],
         },
       ],
       where: {
         id,
       },
-      attributes: ["id", "md"],
+      attributes: ["id"],
     });
   },
 };
