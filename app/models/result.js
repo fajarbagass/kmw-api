@@ -19,17 +19,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   Result.init(
     {
-      md: {
-        type: DataTypes.FLOAT,
-        validate: {
-          notEmpty: {
-            msg: "MD is required",
-          },
-          isFloat: {
-            msg: "MD is not valid",
-          },
-        },
-      },
       client_id: {
         type: DataTypes.INTEGER,
         validate: {

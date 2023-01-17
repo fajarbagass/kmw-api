@@ -41,6 +41,17 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      cf_user: {
+        type: DataTypes.FLOAT,
+        validate: {
+          notEmpty: {
+            msg: "CF user is required",
+          },
+          isFloat: {
+            msg: "CF user is not valid",
+          },
+        },
+      },
     },
     {
       sequelize,

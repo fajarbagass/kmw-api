@@ -15,6 +15,9 @@ module.exports = {
       indication_id: {
         type: Sequelize.INTEGER,
       },
+      cf_user: {
+        type: Sequelize.FLOAT,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
